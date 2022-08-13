@@ -1,8 +1,5 @@
 import com.codeborne.selenide.Selectors;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,7 +31,7 @@ public class Tests {
     }
 
     @Test
-    void test() {
+    void HappyPath() {
 
         driver.get("http://localhost:9999");
 
@@ -50,7 +47,10 @@ public class Tests {
         driver.findElement(By.cssSelector(".button__text"))
                 .click();
 
-        driver.findElement(By.xpath("//p[@data-test-id ][contains(text(), \"Ваша заявка успешно отправлена!\")]"));
+
+
+        Assertions.assertTrue(driver.findElement(By.xpath("//p[@data-test-id ]"))
+                .getText().contains("Ваша заявка успешно отправлена!"));
 
     }
 
