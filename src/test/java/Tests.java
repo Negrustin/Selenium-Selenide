@@ -17,11 +17,11 @@ public class Tests {
 
     @BeforeEach
     void setup() {
+        driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        driver = new ChromeDriver(options);
         driver = new ChromeDriver();
     }
 
@@ -49,8 +49,14 @@ public class Tests {
 
 
 
-        Assertions.assertTrue(driver.findElement(By.xpath("//p[@data-test-id ]"))
-                .getText().contains("Ваша заявка успешно отправлена!"));
+//        Assertions.assertTrue(driver.findElement(By.xpath("//p[@data-test-id ]"))
+//                .getText().contains("Ваша заявка успешно отправлена!"));
+
+        boolean excepted = true;
+        boolean actual = driver.findElement(By.xpath("//p[@data-test-id ]"))
+                .getText().contains("Ваша заявка успешно отправлена!");
+
+        Assertions.assertEquals(excepted,actual);
 
     }
 
